@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <link href="/static/css/main.css" rel="stylesheet">
+    <title>Reddit Sentiment Analyzer</title>
+</head>
+<body>
+    <header class="site-header">
+        <h1 class="container"> Reddit Sentiment Analyzer</h1>
+    </header>
+    <main class="container">
+        <div class="row">
+            <p> Enter a subreddit: </p>
+            <form method='POST' action='.'>
+                <p><input name="subreddit" /></p>
+                <p><input type="submit" value="Analyze" /></p>
+            </form>
+        </div>
+    <div class="row">
+            {% if percentages %}
+                <div class="col-md-12">
+                    <b> Sentiment Analysis</b>
+                        {% for sentiment, percentage in percentages.items() %}
+                            {% if sentiment == -1 %}
+                                <p> Negative: {{ percentage }}% </p>
+                            {% endif %}
+                            {% if sentiment == 0 %}
+                                <p> Neutral: {{ percentage }}% </p>
+                            {% endif %}
+                            {% if sentiment == 1 %}
+                                <p> Positive: {{ percentage }}% </p>
+                            {% endif %}
+                        {%  endfor %}
+                </div>
+            {% endif %}
+        </div>
+        <div class="row">
+            {% if positive %}
+                <div class="col-md-6">
+                    <b> Five Most Positive Headlines</b>
+                        {% for headline in positive %}
+                            <p> {{ headline }}</p>
+                        {%  endfor %}
+                </div>
+                <div class="col-md-6">
+                    <b> Five Most Negative Headlines</b>
+                        {% for headline in negative %}
+                            <p> {{ headline }}</p>
+                        {%  endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </main>
+</body>
+</html>
