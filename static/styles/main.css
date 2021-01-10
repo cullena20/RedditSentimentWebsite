@@ -54,7 +54,7 @@ body {
   }
   .explanation{
     margin-left:35px;
-    font-size:15px;
+    font-size:30px;
     text-align:left;
   }
 .inputbox {
@@ -69,7 +69,7 @@ body {
   margin-top: -110px;
 }
 .OHNO {
-  -webkit-text-stroke-width: 5px;
+  -webkit-text-stroke-width: 3px;
   -webkit-text-stroke-color: rgb(219, 143, 2);
   margin-top:-30px;
   margin-bottom: -25px;
