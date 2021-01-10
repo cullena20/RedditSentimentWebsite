@@ -24,6 +24,11 @@
             </form>
         </div>
     <div class="row">
+            {%  if error %}
+                <div class="co-md-12">
+                    <p> Subreddit does not exist. Please try again. </p>
+                </div>
+            {% endif %}
             {% if percentages %}
                 <div class="col-md-12">
                     <b> Sentiment Analysis</b>
