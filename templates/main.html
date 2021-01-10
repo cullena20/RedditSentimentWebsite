@@ -19,7 +19,7 @@
         <div class="row">
             <p> Enter a subreddit: </p>
             <form method='POST' action='.'>
-                <p><input name="subreddit" /></p>
+                <p><input name="subreddit" value="{{ request.form['subreddit'] }}"/></p>
                 <p><input type="submit" value="Analyze" /></p>
             </form>
         </div>

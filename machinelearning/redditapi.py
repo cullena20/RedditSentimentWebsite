@@ -1,13 +1,10 @@
 import praw
-from prawcore import NotFound
-from prawcore.exceptions import Forbidden, ResponseException
-import sys
 
 
 def create_connection():
-    reddit = praw.Reddit(client_id='blank',
-                         client_secret='blank',
-                         user_agent='blank')
+    reddit = praw.Reddit(client_id='etCTL0OgGAY1jA',
+                         client_secret='vMtYIGE5WVK8BDczKh7ZnRup3rb3ew',
+                         user_agent='Conscious-Reply-7037')
     return reddit
 
 
