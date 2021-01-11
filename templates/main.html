@@ -8,30 +8,33 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
-    <link href="/static/styles/main.css" rel="stylesheet">
+    <link href="../static/styles/main.css" rel="stylesheet">
+
     <title>Reddit Sentiment Analyzer</title>
 </head>
 <body>
-    <header class="site-header">
-        <h1 class="container"> Reddit Sentiment Analyzer</h1>
+    <header class="container site-header">
+        <h1 style="padding-bottom: 10px"> Reddit Sentiment Analyzer </h1>
+        <h6><a href="https://github.com/cullena20/RedditSentimentWebsite" target="_blank">Project Github</a></h6>
+        <h6><a href="https://colab.research.google.com/github/cullena20/RedditSentiment/blob/main/RedditSentiment.ipynb" target="_blank">Interactive Colab Notebook</a></h6>
     </header>
     <main class="container">
-        <div class="row">
+        <div class="row submission">
             <p> Enter a subreddit: </p>
             <form method='POST' action='.'>
                 <p><input name="subreddit" value="{{ request.form['subreddit'] }}"/></p>
                 <p><input type="submit" value="Analyze" /></p>
             </form>
         </div>
-    <div class="row">
+        <div class="row">
             {%  if error %}
-                <div class="co-md-12">
-                    <p> Subreddit does not exist. Please try again. </p>
+                <div class="col-md-12">
+                    <p> {{ error }} </p>
                 </div>
             {% endif %}
             {% if percentages %}
                 <div class="col-md-12">
-                    <b> Sentiment Analysis</b>
+                    <h5> Sentiment Analysis </h5>
                         {% for sentiment, percentage in percentages.items() %}
                             {% if sentiment == -1 %}
                                 <p> Negative: {{ percentage }}% </p>
@@ -49,19 +52,54 @@
         <div class="row">
             {% if positive %}
                 <div class="col-md-6">
-                    <b> Five Most Positive Headlines</b>
+                    <h5> Five Most Positive Headlines </h5>
                         {% for headline in positive %}
                             <p> {{ headline }}</p>
                         {%  endfor %}
                 </div>
                 <div class="col-md-6">
-                    <b> Five Most Negative Headlines</b>
+                    <h5> Five Most Negative Headlines </h5>
                         {% for headline in negative %}
                             <p> {{ headline }}</p>
                         {%  endfor %}
                 </div>
             {% endif %}
         </div>
+        <div class="information">
+            <h3> How does this work? </h3>
+                <p class="explanation">
+                    A natural language processing model is used to determine the sentiment of a subreddit from the top
+                    50 newest titles. The user is able to type a subreddit, which will then be ran through the machine
+                    learning model. The model classifies titles as positive, negative, or neutral and returns the
+                    percentage breakdown of a subreddit, along with the top five most positive and top five most
+                    negative posts.
+                </p>
+            <h3> Methodology for Nerds </h3>
+            <p class="explanation">
+                Our first step was to explore the Reddit API and to examine our data. We then had to figure out
+                the best machine learning model for the task. We ended up using VADER, a pretrained model from
+                NLTK that specializes in identifying the sentiment of social media text. We tested this model
+                on several subreddits and explored the results, before coding this into a python script, and then
+                into a website. To see more about the model building process, check out the interactive Colab
+                notebook linked at the top of the page!
+            </p>
+            <h3> Future Steps </h3>
+            <p class="explanation">
+                Using this same user interface, we could test out different models that may bring us more informative
+                analyzes of subreddits. For example, we could train a model that could detect fake news or hate speech
+                and give scores for subreddits. Additionally, we could change our methodology in deploying our model on
+                subreddits. Instead of looking at titles, it may be more informational to take into account comments or
+                even upvotes.
+            </p>
     </main>
+    <address class="container information">
+        <h3> About Me </h3>
+        <p>
+            My name is Cullen Anderson and I am a student from New York City.
+        </p>
+        <p>
+            Check out my Github <a href="https://github.com/cullena20" target="_blank" rel="noopener noreferrer"> here</a>!
+        </p>
+    </address>
 </body>
 </html>
