@@ -2,7 +2,7 @@ import praw
 
 
 def create_connection():
-    reddit = praw.Reddit(client_id='<your client_id>,
+    reddit = praw.Reddit(client_id='<your client_id>',
                          client_secret='<your client_secret>',
                          user_agent='<your user-agent>')
     return reddit
