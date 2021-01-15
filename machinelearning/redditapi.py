@@ -1,13 +1,15 @@
 import praw
-import json
-with open('config.json') as config_file:
-    config_data = json.load(config_file)
+import os
+
+client_id = os.environ.get('client_id', None)
+client_secret = os.environ.get('client_secret', None)
+user_agent = os.environ.get('user_agent', None)
 
 
 def create_connection():
-    reddit = praw.Reddit(client_id=config_data["client_id"],
-                         client_secret=config_data["client_secret"],
-                         user_agent=config_data["user_agent"])
+    reddit = praw.Reddit(client_id=client_id,
+                         client_secret=client_secret,
+                         user_agent=user_agent)
     return reddit
 
 
