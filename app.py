@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template
 from machinelearning.mainml import sentiment_analysis
 from prawcore.exceptions import NotFound, Forbidden, ResponseException
-from boto.s3.connection import S3Connection
+
 
 app = Flask(__name__)
 
